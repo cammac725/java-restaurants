@@ -2,14 +2,13 @@ package com.lambdaschool.restaurants;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * Main class to start the application.
  */
 // @EnableJpaAuditing
 @SpringBootApplication
-public class RestaurantsApplicationTests
+public class RestaurantsApplication
 {
     /**
      * Main method to start the application.
@@ -18,7 +17,7 @@ public class RestaurantsApplicationTests
      */
     public static void main(String[] args)
     {
-        SpringApplication.run(RestaurantsApplicationTests.class,
+        SpringApplication.run(RestaurantsApplication.class,
             args);
     }
 }
