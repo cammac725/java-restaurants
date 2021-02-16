@@ -162,16 +162,9 @@ public class SeedData
             "Village",
             "ST",
             "555-123-1555");
-        rest3.getPayments()
-            .add(new RestaurantPayments(rest3,
-                payType1));
-        rest3.getPayments()
-            .add(new RestaurantPayments(rest3,
-                payType3));
-        rest3.getMenus()
-            .add(new Menu("Pizza",
-                15.15,
-                rest3));
+        rest3.getPayments().add(new RestaurantPayments(rest3, payType1));
+        rest3.getPayments().add(new RestaurantPayments(rest3, payType3));
+        rest3.getMenus().add(new Menu("Pizza", 15.15, rest3));
 
         restaurantrepos.save(rest3);
     }
