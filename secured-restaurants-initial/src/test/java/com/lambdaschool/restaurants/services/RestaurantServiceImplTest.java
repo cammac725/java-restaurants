@@ -1,19 +1,22 @@
 package com.lambdaschool.restaurants.services;
 
 import com.lambdaschool.restaurants.RestaurantsApplication;
-import com.lambdaschool.restaurants.exceptions.ResourceNotFoundException;
 import com.lambdaschool.restaurants.models.Menu;
 import com.lambdaschool.restaurants.models.Payment;
 import com.lambdaschool.restaurants.models.Restaurant;
 import com.lambdaschool.restaurants.models.RestaurantPayments;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.persistence.EntityNotFoundException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -22,10 +25,14 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RestaurantsApplication.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RestaurantServiceImplTest {
 
     @Autowired
     private RestaurantService restaurantService;
+
+    @Autowired
+    private PaymentService paymentService;
 
     @Before
     public void setUp() throws Exception {
@@ -38,6 +45,11 @@ public class RestaurantServiceImplTest {
 //        for (Restaurant r : myList) {
 //            System.out.println(r.getRestaurantid() + " " + r.getName());
 //        }
+
+//        List<Payment> myList = paymentService.findAll();
+//        for (Payment p : myList) {
+//            System.out.println(p.getPaymentid());
+//        }
     }
 
     @After
@@ -45,42 +57,42 @@ public class RestaurantServiceImplTest {
     }
 
     @Test
-    public void findRestaurantByNameLike() {
+    public void a_findRestaurantByNameLike() {
         assertEquals(1, restaurantService.findRestaurantByNameLike("eat").size());
     }
 
     @Test
-    public void findNameCity() {
+    public void b_findNameCity() {
         assertEquals(1, restaurantService.findNameCity("test", "city").size());
     }
 
     @Test
-    public void findAll() {
+    public void c_findAll() {
         assertEquals(3, restaurantService.findAll().size());
     }
 
     @Test
-    public void findRestaurantById() {
-        assertEquals("Test Apple", restaurantService.findRestaurantById(12).getName());
+    public void d_findRestaurantById() {
+        assertEquals("Test Apple", restaurantService.findRestaurantById(4).getName());
     }
 
-    @Test (expected = ResourceNotFoundException.class)
-    public void findRestaurantByIdNotFound() {
+    @Test (expected = EntityNotFoundException.class)
+    public void e_findRestaurantByIdNotFound() {
         assertEquals("", restaurantService.findRestaurantById(166).getName());
     }
 
     @Test
-    public void findRestaurantByName() {
+    public void f_findRestaurantByName() {
     }
 
     @Test
-    public void delete() {
-        restaurantService.delete(12);
+    public void g_delete() {
+        restaurantService.delete(10);
         assertEquals(2, restaurantService.findAll().size());
     }
 
     @Test
-    public void save() {
+    public void h_save() {
         // create a restaurant to save
         String rest3Name = "Test Good Eats";
         Restaurant rest3 = new Restaurant(rest3Name,
@@ -103,6 +115,11 @@ public class RestaurantServiceImplTest {
     }
 
     @Test
-    public void update() {
+    public void hh_saveput() {
+
+    }
+
+    @Test
+    public void i_update() {
     }
 }
